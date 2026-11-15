@@ -1,24 +1,37 @@
 ﻿List<string> products = new List<string>();
-    decimal total = 0;
+decimal total = 0;
+
 while (true)
 {
-    Console.WriteLine("Product name (or 'end'");
-    string name = Console.ReadLine() ?? "" ; 
+    Console.WriteLine("Product name (or 'end'):");
+    string name = Console.ReadLine() ?? "";
 
     if (name == "end")
     {
         break;
     }
-    Console.WriteLine("Price");
-    decimal price = decimal.Parse(Console.ReadLine()); 
-    
+
+    Console.WriteLine("Price:");
+    decimal price;
+    while (true)
+    {
+        string priceText = (Console.ReadLine() ?? "").Replace(',', '.');
+        if (decimal.TryParse(priceText, System.Globalization.CultureInfo.InvariantCulture, out price))
+        {
+            break;
+        }
+        Console.WriteLine("That is not a number. Try again:");
+    }
+
     products.Add($"{name} - {price}");
     total = total + price;
 }
+
 Console.WriteLine();
 
 foreach (string product in products)
 {
     Console.WriteLine(product);
 }
-Console.WriteLine($"Total: {total}"); 
+Console.WriteLine($"Items: {products.Count}");
+Console.WriteLine($"Total: {total}");
