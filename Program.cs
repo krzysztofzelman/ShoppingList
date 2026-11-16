@@ -28,10 +28,12 @@ while (true)
 }
 
 Console.WriteLine();
+int number = 1;
 
 foreach (string product in products)
 {
-    Console.WriteLine(product);
+    Console.WriteLine($"{number}. {product}");
+    number = number + 1;
 }
 Console.WriteLine($"Items: {products.Count}");
 Console.WriteLine($"Total: {total}");
