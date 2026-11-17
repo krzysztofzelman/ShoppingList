@@ -18,6 +18,11 @@ while (true)
         string priceText = (Console.ReadLine() ?? "").Replace(',', '.');
         if (decimal.TryParse(priceText, System.Globalization.CultureInfo.InvariantCulture, out price))
         {
+            if (price <0)
+            {
+                Console.WriteLine("Price cannot be negative. Try again:");
+                continue;
+            }
             break;
         }
         Console.WriteLine("That is not a number. Try again:");
